@@ -15,9 +15,9 @@ namespace model {
 class Comparator {
 
 private:
-	SmartProduct product_;
+	const SmartProduct& product_;
 public:
-	Comparator( const SmartProduct& product );
+	Comparator( const SmartProduct& product ) : product_(product){};
 	bool operator()( const SmartProduct& product) const
 	{
 		return product_ == product;
@@ -27,12 +27,12 @@ public:
 class ComparatorName {
 
 private:
-	SmartProduct product_;
+	const std::string& name_;
 public:
-	ComparatorName( const std::string& name_ );
-	bool operator()( const std::string& name ) const
+	ComparatorName( const std::string& name ) : name_(name) {};
+	bool operator()( const SmartProduct& product ) const
 	{
-		return product_.get_name() == name;
+		return product.get_name() == name_;
 	};
 };
 

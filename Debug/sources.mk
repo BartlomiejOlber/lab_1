@@ -25,4 +25,5 @@ C_DEPS :=
 SUBDIRS := \
 src/application \
 src/domain/model \
+src/test \
 
