@@ -4,16 +4,19 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../src/domain/model/milk.cpp \
-../src/domain/model/smart_product.cpp 
+../src/domain/model/refridgerator.cpp \
+../src/domain/model/smart_product.cpp \
+../src/domain/model/smart_product_container.cpp 
 
 OBJS += \
-./src/domain/model/milk.o \
-./src/domain/model/smart_product.o 
+./src/domain/model/refridgerator.o \
+./src/domain/model/smart_product.o \
+./src/domain/model/smart_product_container.o 
 
 CPP_DEPS += \
-./src/domain/model/milk.d \
-./src/domain/model/smart_product.d 
+./src/domain/model/refridgerator.d \
+./src/domain/model/smart_product.d \
+./src/domain/model/smart_product_container.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

@@ -19,8 +19,20 @@ SmartProduct::SmartProduct( const std::string& name, double price, time_t expiry
 	price_ = price;
 	initial_quantity_ = quantity;
 	current_quantity_ = quantity;
-	expiry_date_ = expiry_date;
+	expiry_date_ = expiry_date; //todo: change to a proper format
 	unit_ = unit;
+}
+
+void SmartProduct::validate()
+{
+	if( name_.length() < 4)
+		throw SmartProductNameException();
+	if( price_ < 0.0 )
+		throw SmartProductPriceException();
+	if( expiry_date_ < 0 ) //todo: validate expiry date to be a future date
+		throw SmartProductExpiryDateException();
+	if( initial_quantity_ < 0 )
+		throw SmartProductQuantityException();
 }
 
 time_t SmartProduct::get_expiry_date() const
@@ -57,6 +69,13 @@ void SmartProduct::print_state() const
 	std::cout << "\tCurrent quantity: "<< current_quantity_<< std::endl;
 	std::cout << "\tExpiry date: "<< expiry_date_ << std::endl;
 }
+
+bool SmartProduct::operator==( const SmartProduct& right ) const
+{
+	return name_ == right.name_ && expiry_date_ == right.expiry_date_ &&
+			price_ == right.price_ && current_quantity_ == right.current_quantity_ && initial_quantity_ == right.initial_quantity_;
+}
+
 
 }//end namespace model
 }//end namespace domain

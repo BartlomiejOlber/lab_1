@@ -10,6 +10,7 @@
 
 #include <ctime>
 #include <string>
+#include "smart_product_exception.hpp"
 
 namespace domain {
 namespace model {
@@ -20,7 +21,6 @@ enum ProductUnit {
 	PRODUCT_UNIT_ITEMS = 2
 };
 
-
 class SmartProduct {
 private:
 	std::string name_;
@@ -29,8 +29,7 @@ private:
 	double current_quantity_;
 	time_t expiry_date_;
 	ProductUnit unit_;
-
-
+	void validate();
 
 public:
 	SmartProduct( const std::string& name, double price, time_t expiry_date, double quantity, ProductUnit unit );
@@ -40,11 +39,8 @@ public:
 	double get_initial_quantity() const;
 	time_t get_expiry_date() const;
 	void print_state() const;
-	virtual void validate(){};
-	virtual ~SmartProduct(){};
+	bool operator==( const SmartProduct& right ) const;
 };
-
-
 
 } //end namespace model
 } // end namespace domain
