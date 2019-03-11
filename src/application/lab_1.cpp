@@ -8,12 +8,17 @@
 
 #include <iostream>
 #include "../domain/model/smart_product_exception.hpp"
+#include "../domain/model/stock.hpp"
+#include "../infrastructure/stock_repository.hpp"
 
 using namespace std;
 
 
 int main() {
 
+	domain::model::Stock stock;
+	infrastructure::StockRepository stack_repository( "products.txt" );
+	stack_repository.load( stock );
 
 	return 0;
 }
