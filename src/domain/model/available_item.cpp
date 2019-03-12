@@ -5,27 +5,35 @@
  *      Author: bartlomiej
  */
 #include "available_item.hpp"
+#include <iostream>
 
 namespace domain {
 namespace model {
 
-void AvailableItem::set_name( const std::string& name )
+void AvailableItem::print() const
 {
-	name_ = name;
+	std::cout << name_ << ": " << price_ << "$ " << quantity_ << (int)unit_ << std::endl;
 }
 
-void AvailableItem::set_price( double price )
+const std::string& AvailableItem::get_name() const
 {
-	price_ = price;
+	return name_;
 }
-void AvailableItem::set_quantity( double quantity )
+
+double AvailableItem::get_price() const
 {
-	quantity_ = quantity;
+	return price_;
 }
-void AvailableItem::set_unit( ProductUnit unit )
+double AvailableItem::get_quantity() const
 {
-	unit_ = unit;
+	return quantity_;
 }
+std::string AvailableItem::get_unit() const
+{
+	return "kilo";
+}
+
+
 
 }//end namespace model
 }//end namespace domain

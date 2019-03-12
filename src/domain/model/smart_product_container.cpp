@@ -44,6 +44,15 @@ void SmartProductContainer::add_product( const SmartProduct& product )
 		throw SmartProductContainerException( "container overload" );
 }
 
+void SmartProductContainer::add_product( const std::string& name, double price, time_t expiry_date, double quantity, ProductUnit unit )
+{
+	if( container_.size() < max_volume_ ){
+		SmartProduct product( name, price, expiry_date, quantity, unit );
+		container_.push_back( product );
+	}else
+		throw SmartProductContainerException( "container overload" );
+}
+
 void SmartProductContainer::remove_product( const std::vector<SmartProduct>& products )
 {
 	std::vector<SmartProduct>::const_iterator pos;

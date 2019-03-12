@@ -11,15 +11,10 @@
 #include <ctime>
 #include <string>
 #include "smart_product_exception.hpp"
+#include "product_unit.hpp"
 
 namespace domain {
 namespace model {
-
-enum ProductUnit {
-	PRODUCT_UNIT_KILO = 0,
-	PRODUCT_UNIT_LITER = 1,
-	PRODUCT_UNIT_ITEMS = 2
-};
 
 class SmartProduct {
 private:

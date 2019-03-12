@@ -20,7 +20,6 @@ void StockRepository::load( domain::model::Stock& stock )
 	double price;
 	double quantity;
 	int unit;
-
 	while (std::getline( ifs, line )) {
 		std::cout << line << std::endl;
 		std::stringstream iss(line);
@@ -34,9 +33,7 @@ void StockRepository::load( domain::model::Stock& stock )
 		std::string unit_str;
 		std::getline(iss, unit_str, ',');
 		unit = std::stoi( unit_str );
-		std::cout << name << ": " << price << ": " << quantity << ": " << unit << std::endl;
-		domain::model::AvailableItem item( name, price, quantity, unit );
-		stock.add_item(item);
+		stock.add_item( name, price, quantity, unit );
 	}
 
 	ifs.close();

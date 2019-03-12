@@ -25,6 +25,7 @@ protected:
 
 public:
 	void add_product( const SmartProduct& product );
+	void add_product( const std::string& name, double price, time_t expiry_date, double quantity, ProductUnit unit );
 	void remove_product( const std::vector<SmartProduct>& products );
 	std::vector<SmartProduct> find_product( const SmartProduct& product ) const;
 	std::vector<SmartProduct> find_product( const std::string& name ) const;

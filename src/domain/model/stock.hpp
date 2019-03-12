@@ -17,11 +17,16 @@ namespace model {
 
 class Stock {
 
+public:
+	typedef std::vector<AvailableItem> AvailableItemsT;
+
 private:
-	std::vector<AvailableItem> stock_;
+	AvailableItemsT stock_;
 
 public:
 	void add_item( const AvailableItem& item );
+	void add_item( const std::string& name, double price, double quantity, int unit );
+	const AvailableItemsT& get_items() const;
 	void print() const;
 };
 

@@ -8,7 +8,8 @@
 #ifndef DOMAIN_MODEL_AVAILABLE_ITEM_HPP_
 #define DOMAIN_MODEL_AVAILABLE_ITEM_HPP_
 
-#include "smart_product.hpp"
+#include "product_unit.hpp"
+#include <string>
 
 namespace domain {
 namespace model {
@@ -23,13 +24,15 @@ private:
 
 public:
 	AvailableItem( const std::string& name, double price, double quantity, int unit ) :
-		name_(name), price_(price), quantity_(quantity), unit_(PRODUCT_UNIT_KILO) {
-		unit_ = (ProductUnit) unit;
+		name_(name), price_(price), quantity_(quantity), unit_(ProductUnit::UNKNOWN) {
+		if( unit > (int)ProductUnit::UNKNOWN && unit < (int)ProductUnit::MAXIMUM )
+			unit_ = (ProductUnit) unit;
 	};
-	void set_name( const std::string& name );
-	void set_price( double price );
-	void set_quantity( double quantity );
-	void set_unit( ProductUnit unit );
+	void print() const;
+	const std::string& get_name() const;
+	double get_price() const;
+	double get_quantity() const;
+	std::string get_unit() const;
 
 };
 

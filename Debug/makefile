@@ -11,6 +11,8 @@ RM := rm -rf
 -include src/infrastructure/subdir.mk
 -include src/domain/model/subdir.mk
 -include src/application/subdir.mk
+-include src/UI/subdir.mk
+-include src/subdir.mk
 -include subdir.mk
 -include objects.mk
 
