@@ -5,11 +5,9 @@
  *      Author: bartlomiej
  */
 #include "main_options.hpp"
-#include "../application/stock_service.hpp"
-#include "../domain/model/stock.hpp"
-#include "../domain/model/available_item.hpp"
-#include <iostream>
-#include <cstdlib>
+#include "containers_interface.hpp"
+#include "shopping_list_interface.hpp"
+#include "stock_interface.hpp"
 
 namespace UI{
 
@@ -23,49 +21,45 @@ void MainOptions::display()
 	std::cout<< "\n Selection: ";
 }
 
-void MainOptions::display_house_inventory()
-{
-	std::cout<< "[1]. Open refridgerator"<< std::endl;
-	std::cout<< "[2]. Open candy drawer"<< std::endl;
-	std::cout<< "[3]. Open drinks cupboard"<< std::endl;
-}
-
-int MainOptions::get_choice()
-{
-	int choice;
-	std::cin >> choice;
-	return choice;
-}
-
 void MainOptions::loop_controler()
 {
 	int choice = 0;
 	do{
 		//std::system("clear");
 		display();
-		choice = get_choice();
+		choice = get_number();
 		switch(choice)
 		{
 			case 1:
-				show_stock();
+				run_stock();
 				break;
-
+			case 2:
+				run_containers();
+				break;
+			case 3:
+				run_shopping_list();
+				break;
 		}
 
 	}while(choice != 4);
 }
 
-void MainOptions::show_stock()
+void MainOptions::run_stock()
 {
-	domain::model::Stock stock;
-	application::StockService stock_service;
-	stock_service.get_stock( stock );
-	const domain::model::Stock::AvailableItemsT& items = stock.get_items();
-	domain::model::Stock::AvailableItemsT::const_iterator pos;
-	for(pos = items.begin(); pos!=items.end(); ++pos){
-		std::cout << pos->get_name() << ": " << pos->get_price() << "$ " << pos->get_quantity()
-				<< pos->get_unit() << std::endl;
-	}
+	StockInterface si;
+	si.show();
+}
+
+void MainOptions::run_containers()
+{
+	ContainersInterface ci;
+	ci.loop();
+}
+
+void MainOptions::run_shopping_list()
+{
+	ListInterface li;
+	li.loop();
 }
 
 }

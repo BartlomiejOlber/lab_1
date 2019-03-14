@@ -8,16 +8,18 @@
 #ifndef UI_MAIN_OPTIONS_HPP_
 #define UI_MAIN_OPTIONS_HPP_
 
+#include "base_interface.hpp"
+
 namespace UI{
 
-class MainOptions {
+class MainOptions : public Interface{
 
 public:
 	void display();
 	void loop_controler();
-	void show_stock();
-	void display_house_inventory();
-	int get_choice();
+	void run_stock();
+	void run_containers();
+	void run_shopping_list();
 };
 
 }//end UI
