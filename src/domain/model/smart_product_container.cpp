@@ -29,9 +29,10 @@ class ComparatorName {
 private:
 	const std::string& name_;
 public:
-	ComparatorName( const std::string& name ) : name_(name) {};
+	ComparatorName( const std::string& name ) : name_(name) {std::cerr<<name_<<std::endl;};
 	bool operator()( const SmartProduct& product ) const
 	{
+
 		return product.get_name() == name_;
 	};
 };
@@ -44,7 +45,7 @@ void SmartProductContainer::add_product( const SmartProduct& product )
 		throw SmartProductContainerException( "container overload" );
 }
 
-void SmartProductContainer::add_product( const std::string& name, double price, time_t expiry_date, double quantity, ProductUnit unit )
+void SmartProductContainer::add_product( const std::string& name, double price, const std::tm& expiry_date, double quantity, int unit )
 {
 	if( container_.size() < max_volume_ ){
 		SmartProduct product( name, price, expiry_date, quantity, unit );
@@ -53,30 +54,37 @@ void SmartProductContainer::add_product( const std::string& name, double price, 
 		throw SmartProductContainerException( "container overload" );
 }
 
-void SmartProductContainer::remove_product( const std::vector<SmartProduct>& products )
+void SmartProductContainer::remove_product( const ContentT& products )
 {
-	std::vector<SmartProduct>::const_iterator pos;
-
-	for( pos = products.begin(); pos != products.end(); ++pos ){
-		std::remove_if( container_.begin(), container_.end(), Comparator( *pos ) );
+	ContentT::const_iterator pos_,pos;
+	for( pos_ = container_.begin(); pos_!= container_.end(); ++pos_ ){
+		for( pos = products.begin(); pos != products.end(); ++pos ){
+			if( *pos == *pos_){
+				container_.erase(pos_);
+				pos_--;
+			}
+		}
 	}
 }
 
-std::vector<SmartProduct> SmartProductContainer::find_product( const SmartProduct& product ) const
+/**SmartProductContainer::ContentT SmartProductContainer::find_product( const SmartProduct& product ) const
 {
-	std::vector<SmartProduct> result;
+	ContentT result(container_.size());
 	std::copy_if(container_.begin(), container_.end(), result.begin(), Comparator( product ) );
 	return result;
-}
+}**/
 
-std::vector<SmartProduct> SmartProductContainer::find_product( const std::string& name ) const
+const SmartProductContainer::ContentT& SmartProductContainer::find_product( const std::string& name, ContentT& result ) const
 {
-	std::vector<SmartProduct> result;
-	std::copy_if(container_.begin(), container_.end(), result.begin(), ComparatorName( name ) );
+	ContentT::const_iterator pos;
+	for( pos = container_.begin(); pos != container_.end(); ++pos ){
+		if( pos->get_name() == name )
+			result.push_back( *pos );
+	}
 	return result;
 }
 
-const std::vector<SmartProduct>& SmartProductContainer::get_product_list() const
+const SmartProductContainer::ContentT& SmartProductContainer::get_products() const
 {
 	return container_;
 }

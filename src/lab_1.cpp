@@ -23,6 +23,7 @@ int main() {
 	stock_repository.load( stock );
 	stock.print();
 */
+
 	UI::MainOptions main_options;
 	//main_options.display();
 	main_options.loop_controler();

@@ -8,8 +8,7 @@
 #ifndef UI_BASE_INTERFACE_HPP_
 #define UI_BASE_INTERFACE_HPP_
 
-#include <iostream>
-#include <cstdlib>
+#include <string>
 
 namespace UI {
 
@@ -17,6 +16,7 @@ class Interface {
 
 public:
 	int get_number();
+	std::string get_name();
 };
 
 }//end namespace

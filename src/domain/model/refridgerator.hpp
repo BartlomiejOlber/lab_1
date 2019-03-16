@@ -17,8 +17,7 @@ namespace model {
 class Refridgerator : public SmartProductContainer {
 
 public:
-	Refridgerator( int max_volume = 32 ) : SmartProductContainer( max_volume ){};
-	load( )
+	Refridgerator( int max_volume = 32 ) : SmartProductContainer( max_volume ){}
 };
 
 }//end namespace model

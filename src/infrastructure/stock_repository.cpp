@@ -6,6 +6,7 @@
  */
 
 #include <sstream>
+#include <fstream>
 #include <iostream>
 #include "stock_repository.hpp"
 
@@ -32,7 +33,7 @@ void StockRepository::load( domain::model::Stock& stock )
 		quantity = std::stod( quantity_str );
 		std::string unit_str;
 		std::getline(iss, unit_str, ',');
-		unit = std::stoi( unit_str );
+		unit = domain::model::ProductUnitConverter::from_string( unit_str );
 		stock.add_item( name, price, quantity, unit );
 	}
 

@@ -63,10 +63,11 @@ void ListInterface::loop()
 }
 
 void ListInterface::run_generation()
-{
+{/**
 	application::ListService list;
 	list.generate();
 	list.display_content();
+**/
 }
 
 void ListInterface::run_edit()

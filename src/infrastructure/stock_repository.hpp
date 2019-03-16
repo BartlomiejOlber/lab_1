@@ -8,7 +8,7 @@
 #ifndef INFRASTRUCTURE_STOCK_REPOSITORY_HPP_
 #define INFRASTRUCTURE_STOCK_REPOSITORY_HPP_
 
-#include <string>
+
 #include "../domain/model/stock.hpp"
 
 namespace infrastructure {

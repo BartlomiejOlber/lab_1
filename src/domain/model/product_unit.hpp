@@ -21,6 +21,15 @@ enum class ProductUnit {
 	MAXIMUM = 4
 };
 
+class ProductUnitConverter {
+
+public:
+	static std::string to_str( ProductUnit unit );
+	static ProductUnit from_int( int unit );
+	static int from_string( const std::string& string );
+
+};
+
 }
 }
 

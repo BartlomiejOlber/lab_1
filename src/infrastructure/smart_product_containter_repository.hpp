@@ -10,6 +10,7 @@
 
 #include "../domain/model/smart_product_container.hpp"
 
+
 namespace infrastructure {
 
 class SmartProductContainerRepository {
@@ -20,6 +21,7 @@ private:
 public:
 	SmartProductContainerRepository( const char* file_path ) : file_path_( file_path ) {};
 	void load( domain::model::SmartProductContainer& container );
+	void store( const domain::model::SmartProductContainer& container );
 
 };
 

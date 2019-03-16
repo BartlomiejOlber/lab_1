@@ -24,13 +24,16 @@ double AvailableItem::get_price() const
 {
 	return price_;
 }
+
 double AvailableItem::get_quantity() const
 {
 	return quantity_;
 }
-std::string AvailableItem::get_unit() const
+
+ProductUnit AvailableItem::get_unit() const
 {
-	return "kilo";
+	return unit_;
+
 }
 
 

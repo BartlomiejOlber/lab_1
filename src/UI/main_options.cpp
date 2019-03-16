@@ -4,6 +4,8 @@
  *  Created on: Mar 12, 2019
  *      Author: bartlomiej
  */
+#include <iostream>
+#include <cstdlib>
 #include "main_options.hpp"
 #include "containers_interface.hpp"
 #include "shopping_list_interface.hpp"

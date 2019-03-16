@@ -22,18 +22,25 @@ private:
 	double price_;
 	double initial_quantity_;
 	double current_quantity_;
-	time_t expiry_date_;
+	std::tm expiry_date_;
 	ProductUnit unit_;
 	void validate();
 
 public:
-	SmartProduct( const std::string& name, double price, time_t expiry_date, double quantity, ProductUnit unit );
+	SmartProduct() :name_(""), price_(0.0), initial_quantity_(0.0), current_quantity_(0.0),
+	  unit_( ProductUnit::UNKNOWN ) {
+
+	};
+	SmartProduct( const std::string& name, double price, const std::tm& expiry_date, double quantity, int unit ) :
+		name_(name), price_(price), initial_quantity_(quantity), current_quantity_(quantity),
+		 expiry_date_(expiry_date), unit_( ProductUnitConverter::from_int( unit ) ){};
 	const std::string& get_name() const;
 	double get_price() const;
 	double get_current_quantity() const;
 	double get_initial_quantity() const;
-	time_t get_expiry_date() const;
-	void print_state() const;
+	const std::tm& get_expiry_date() const;
+	std::string get_expiry_date_str() const;
+	ProductUnit get_unit() const;
 	bool operator==( const SmartProduct& right ) const;
 };
 

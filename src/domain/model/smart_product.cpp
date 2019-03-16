@@ -8,20 +8,11 @@
 #include "smart_product.hpp"
 
 #include <iostream>
+#include <sstream>
 
 namespace domain {
 namespace model {
 
-
-SmartProduct::SmartProduct( const std::string& name, double price, time_t expiry_date, double quantity, ProductUnit unit )
-{
-	name_ = name;
-	price_ = price;
-	initial_quantity_ = quantity;
-	current_quantity_ = quantity;
-	expiry_date_ = expiry_date; //todo: change to a proper format
-	unit_ = unit;
-}
 
 void SmartProduct::validate()
 {
@@ -29,13 +20,13 @@ void SmartProduct::validate()
 		throw SmartProductNameException();
 	if( price_ < 0.0 )
 		throw SmartProductPriceException();
-	if( expiry_date_ < 0 ) //todo: validate expiry date to be a future date
+	if( expiry_date_.tm_year < 2019 ) //todo: validate expiry date to be a future date
 		throw SmartProductExpiryDateException();
 	if( initial_quantity_ < 0 )
 		throw SmartProductQuantityException();
 }
 
-time_t SmartProduct::get_expiry_date() const
+const std::tm& SmartProduct::get_expiry_date() const
 {
 	return expiry_date_;
 }
@@ -61,18 +52,24 @@ double SmartProduct::get_initial_quantity() const
 	return initial_quantity_;
 }
 
-void SmartProduct::print_state() const
+ProductUnit SmartProduct::get_unit() const
 {
-	std::cout << "Milk:"<<std::endl;
-	std::cout << "\tName: "<< name_<< std::endl;
-	std::cout << "\tPrice: "<< price_<< std::endl;
-	std::cout << "\tCurrent quantity: "<< current_quantity_<< std::endl;
-	std::cout << "\tExpiry date: "<< expiry_date_ << std::endl;
+	return unit_;
+}
+
+std::string SmartProduct::get_expiry_date_str() const
+{
+	char date[11] = {0};
+	std::strftime(date,11,"%Y-%m-%d", &expiry_date_ );
+	return std::string(date);
+
 }
 
 bool SmartProduct::operator==( const SmartProduct& right ) const
 {
-	return name_ == right.name_ && expiry_date_ == right.expiry_date_ &&
+	time_t this_time = mktime( (std::tm*)&expiry_date_ );
+	time_t right_time = mktime( (std::tm*)&right.expiry_date_);
+	return name_ == right.name_ && difftime( this_time, right_time ) == 0 &&
 			price_ == right.price_ && current_quantity_ == right.current_quantity_ && initial_quantity_ == right.initial_quantity_;
 }
 
