@@ -10,16 +10,14 @@
 
 
 #include "../domain/model/stock.hpp"
+#include "base_repository.hpp"
 
 namespace infrastructure {
 
-class StockRepository {
-
-private:
-	const char* file_path_;
+class StockRepository :  public BaseRepository {
 
 public:
-	StockRepository( const char* file_path ) : file_path_( file_path ) {};
+	StockRepository( const char* file_path ) : BaseRepository( file_path ) {};
 	void load( domain::model::Stock& stock );
 
 };

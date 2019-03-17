@@ -15,7 +15,7 @@ namespace infrastructure {
 void StockRepository::load( domain::model::Stock& stock )
 {
 	std::ifstream ifs;
-	ifs.open( file_path_, std::ifstream::in);
+	ifs.open( get_path(), std::ifstream::in);
 	std::string line;
 	std::string name;
 	double price;

@@ -4,31 +4,71 @@
  *  Created on: Mar 14, 2019
  *      Author: bartlomiej
  */
-
+#include <iomanip>
 #include "containers_interface.hpp"
-#include "../application/refridgerator_service.hpp"
-#include "../domain/model/refridgerator.hpp"
+#include "../domain/model/smart_product_container.hpp"
+#include "../application/smart_product_container_factory.hpp"
+#include "../application/container_service_factory.hpp"
+#include "../application/container_service.hpp"
+
 
 namespace UI{
 
 using namespace domain::model;
 using namespace application;
 
-class ContainerUI {
+class ContainerUI : public Interface {
 
+private:
+	SmartProductContainer* container_;
+	ContainerService* service_;
 public:
-	static void print_content( const SmartProductContainer& container );
+	ContainerUI( SmartProductContainer* container, ContainerService* service ):
+		container_(container), service_(service) {};
+	void print_content();
+	void process_container();
+	void display_options();
 };
 
-void ContainerUI::print_content( const SmartProductContainer& container )
+void ContainerUI::print_content()
 {
 	std::system("clear");
-	const SmartProductContainer::ContentT& products = container.get_products();
+	const SmartProductContainer::ContentT& products = container_->get_products();
 	SmartProductContainer::ContentT::const_iterator pos;
+	std::cout << "*" << "Container contents" << "*" << std::endl;
+	std::cout.width( 80 );
+	std::cout.fill( '*' );
+	std::cout <<std::endl;
 	for(pos = products.begin(); pos!=products.end(); ++pos){
 		std::cout << pos->get_name() << ":  " << pos->get_price() << "$   " << pos->get_current_quantity()
 			<< ProductUnitConverter::to_str(pos->get_unit())<< "    "<< pos->get_expiry_date_str() <<std::endl;
 	}
+}
+
+void ContainerUI::process_container()
+{
+	int choice = 0;
+	SmartProductContainer::ContentT products;
+	service_->init_container( *container_ );
+	print_content();
+	display_options();
+	do{
+		choice = get_number();
+		if( choice == 1){
+			std::cout << "\n\tName the product you want to consume: ";
+			std::string consumed_product = get_name();
+			container_->find_product( consumed_product, products );
+			container_->remove_product( products );
+		}
+	}while( choice!=2 );
+	service_->save_container( *container_ );
+}
+
+void ContainerUI::display_options()
+{
+	std::cout<< "\n\n[1]. Remove an item"<< std::endl;
+	std::cout<< "[2]. Back"<<std::endl;
+	std::cout<< "\n Selection: ";
 }
 
 void ContainersInterface::display_inventory()
@@ -41,12 +81,7 @@ void ContainersInterface::display_inventory()
 	std::cout<< "\n Selection: ";
 }
 
-void ContainersInterface::display_options()
-{
-	std::cout<< "\n\n[1]. Remove an item"<< std::endl;
-	std::cout<< "[2]. Back"<<std::endl;
-	std::cout<< "\n Selection: ";
-}
+
 
 
 void ContainersInterface::loop()
@@ -59,7 +94,7 @@ void ContainersInterface::loop()
 		switch(choice)
 		{
 			case 1:
-				run_refridgerator();
+				run_refridgerator( );
 				break;
 			case 2:
 				run_candys();
@@ -72,61 +107,28 @@ void ContainersInterface::loop()
 	}while(choice != 4);
 }
 
-int ContainersInterface::get_choice()
-{
-	int choice = 0;
-	int item_choice = 0;
-	choice = get_number();
-	if( choice == 2 )
-		return -1;
-	std::cout << "Enter the index of chosen item" << std::endl;
-	item_choice = get_number();
-	return item_choice;
-}
-
 void ContainersInterface::run_refridgerator()
 {
-	int choice = 0;
-	Refridgerator refridgerator;
-	SmartProductContainer::ContentT products;
-	RefridgeratorService service;
-	service.init_container( refridgerator );
-	ContainerUI::print_content( refridgerator );
-
-	display_options();
-	do{
-		choice = get_number();
-		if( choice == 1){
-			std::cout << "\n\tName the product you want to consume: ";
-			std::string consumed_product = get_name();
-			refridgerator.find_product( consumed_product, products );
-			refridgerator.remove_product( products );
-		}
-	}while( choice!=2 );
-	service.save_container( refridgerator );
-
+	std::unique_ptr<SmartProductContainer> container = SmartProductContainerFactory::create( ContainerTypes::REFRIDGERATOR );
+	std::unique_ptr<ContainerService> service = ContainerServiceFactory::create( ContainerTypes::REFRIDGERATOR );
+	ContainerUI container_ui( container.get(), service.get() );
+	container_ui.process_container();
 }
-
 
 void ContainersInterface::run_candys()
 {
-	/**
-	application::CandysService service;
-	//std::system("clear");
-	service.display_content();
-	display_options();
-	service.remove( get_choice() );
-**/
+	std::unique_ptr<SmartProductContainer> container = SmartProductContainerFactory::create( ContainerTypes::CANDY_DRAWER );
+	std::unique_ptr<ContainerService> service = ContainerServiceFactory::create( ContainerTypes::CANDY_DRAWER );
+	ContainerUI container_ui( container.get(), service.get() );
+	container_ui.process_container();
 }
 
 void ContainersInterface::run_drinks()
-{/**
-	application::DrinksService service;
-	//std::system("clear");
-	service.display_content();
-	display_options();
-	service.remove( get_choice() );
-	**/
+{
+	std::unique_ptr<SmartProductContainer> container = SmartProductContainerFactory::create( ContainerTypes::DRINKS_CUPBOARD );
+	std::unique_ptr<ContainerService> service = ContainerServiceFactory::create( ContainerTypes::DRINKS_CUPBOARD );
+	ContainerUI container_ui( container.get(), service.get() );
+	container_ui.process_container();
 }
 
 }//end namespace

@@ -14,7 +14,7 @@ void ListInterface::display()
 {
 	std::cout<< "[1]. Generate shopping list"<< std::endl;
 	std::cout<< "[2]. Edit shopping list"<< std::endl;
-	std::cout<< "[3]. Generation preferences"<< std::endl;
+	std::cout<< "[3]. Generation preferences"<< std::endl;// todo: preferences to main options preferences 2 classes options to edit preferences similat to containers elo
 	std::cout<< "[4]. Save shopping list"<< std::endl;
 	std::cout<< "[5]. Back"<<std::endl;
 	std::cout<< "\n Selection: ";
@@ -29,10 +29,9 @@ void ListInterface::display_edit()
 
 void ListInterface::display_preferences()
 {
-	std::cout<< "[1]. Generate by containers state"<< std::endl;
-	std::cout<< "[2]. Generate by expiry date"<< std::endl;
-	std::cout<< "[3]. Generate by initial preferences"<< std::endl;
-	std::cout<< "[4]. Back"<<std::endl;
+	std::cout<< "[1]. Add a preference"<< std::endl;
+	std::cout<< "[2]. Genera"<< std::endl;
+	std::cout<< "[3]. Back"<<std::endl;
 	std::cout<< "\n Selection: ";
 }
 

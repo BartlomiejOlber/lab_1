@@ -17,8 +17,6 @@ class ContainersInterface : public Interface{
 
 public:
 	void display_inventory();
-	void display_options();
-	int get_choice();
 	void run_refridgerator();
 	void run_candys();
 	void run_drinks();

@@ -31,7 +31,7 @@ public:
 	void add_product( const std::string& name, double price, const std::tm& expiry_date, double quantity, int unit );
 	void remove_product( const ContentT& products );
 	//ContentT find_product( const SmartProduct& product ) const;
-	const ContentT& find_product( const std::string& name, ContentT& result ) const;
+	void find_product( const std::string& name, ContentT& result ) const;
 	const ContentT& get_products() const;
 	int get_max_volume() const {return max_volume_;};
 	virtual ~SmartProductContainer(){};

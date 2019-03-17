@@ -12,13 +12,18 @@
 
 namespace application {
 
-class CandysService {
+class CandysService : public ContainerService {
+
+protected:
+	virtual const char* get_container_config_file();
 
 public:
-
+	virtual ~CandysService(){};
 };
 
 }// end namespace
+
+
 
 
 #endif /* APPLICATION_CANDYS_SERVICE_HPP_ */

@@ -24,6 +24,21 @@ public:
 	};
 };
 
+class ComparatorProducts {
+
+private:
+	const SmartProductContainer::ContentT& products_;
+public:
+	ComparatorProducts( const SmartProductContainer::ContentT& products ) : products_(products){};
+	bool operator()( const SmartProduct& product ) const
+	{
+		SmartProductContainer::ContentT::const_iterator it = std::find_if (products_.begin(),
+				products_.end(), Comparator( product ));
+		return it != products_.end();
+	};
+
+};
+
 class ComparatorName {
 
 private:
@@ -56,32 +71,18 @@ void SmartProductContainer::add_product( const std::string& name, double price, 
 
 void SmartProductContainer::remove_product( const ContentT& products )
 {
-	ContentT::const_iterator pos_,pos;
-	for( pos_ = container_.begin(); pos_!= container_.end(); ++pos_ ){
-		for( pos = products.begin(); pos != products.end(); ++pos ){
-			if( *pos == *pos_){
-				container_.erase(pos_);
-				pos_--;
-			}
-		}
-	}
+	ContentT::const_iterator pos;
+	pos = std::remove_if ( container_.begin(), container_.end(), ComparatorProducts( products ));
+	container_.erase( pos, container_.end() );
 }
 
-/**SmartProductContainer::ContentT SmartProductContainer::find_product( const SmartProduct& product ) const
-{
-	ContentT result(container_.size());
-	std::copy_if(container_.begin(), container_.end(), result.begin(), Comparator( product ) );
-	return result;
-}**/
-
-const SmartProductContainer::ContentT& SmartProductContainer::find_product( const std::string& name, ContentT& result ) const
+void SmartProductContainer::find_product( const std::string& name, ContentT& result ) const
 {
 	ContentT::const_iterator pos;
 	for( pos = container_.begin(); pos != container_.end(); ++pos ){
 		if( pos->get_name() == name )
 			result.push_back( *pos );
 	}
-	return result;
 }
 
 const SmartProductContainer::ContentT& SmartProductContainer::get_products() const

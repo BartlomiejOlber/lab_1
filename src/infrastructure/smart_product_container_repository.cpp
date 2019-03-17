@@ -19,7 +19,7 @@ using namespace domain::model;
 void SmartProductContainerRepository::load( SmartProductContainer& container )
 {
 	std::ifstream ifs;
-	ifs.open( file_path_, std::ifstream::in);
+	ifs.open( get_path() , std::ifstream::in);
 	std::tm date = {};
 	std::string line;
 	std::string name;
@@ -48,7 +48,7 @@ void SmartProductContainerRepository::load( SmartProductContainer& container )
 void SmartProductContainerRepository::store( const SmartProductContainer& container )
 {
 	std::ofstream ofs;
-	ofs.open( file_path_, std::ofstream::out | std::ofstream::trunc);
+	ofs.open( get_path() , std::ofstream::out | std::ofstream::trunc);
 	const SmartProductContainer::ContentT& products = container.get_products();
 	SmartProductContainer::ContentT::const_iterator pos;
 	for(pos = products.begin(); pos!=products.end(); ++pos){

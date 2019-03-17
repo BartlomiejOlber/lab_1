@@ -12,6 +12,14 @@
 
 namespace application {
 
+class DrinksService : public ContainerService {
+
+protected:
+	virtual const char* get_container_config_file();
+
+public:
+	virtual ~DrinksService(){};
+};
 
 }// end namespace
 
