@@ -6,6 +6,8 @@
 CPP_SRCS += \
 ../src/domain/model/available_item.cpp \
 ../src/domain/model/item_list.cpp \
+../src/domain/model/preference_list.cpp \
+../src/domain/model/preference_type.cpp \
 ../src/domain/model/product_unit.cpp \
 ../src/domain/model/smart_product.cpp \
 ../src/domain/model/smart_product_container.cpp \
@@ -14,6 +16,8 @@ CPP_SRCS += \
 OBJS += \
 ./src/domain/model/available_item.o \
 ./src/domain/model/item_list.o \
+./src/domain/model/preference_list.o \
+./src/domain/model/preference_type.o \
 ./src/domain/model/product_unit.o \
 ./src/domain/model/smart_product.o \
 ./src/domain/model/smart_product_container.o \
@@ -22,6 +26,8 @@ OBJS += \
 CPP_DEPS += \
 ./src/domain/model/available_item.d \
 ./src/domain/model/item_list.d \
+./src/domain/model/preference_list.d \
+./src/domain/model/preference_type.d \
 ./src/domain/model/product_unit.d \
 ./src/domain/model/smart_product.d \
 ./src/domain/model/smart_product_container.d \

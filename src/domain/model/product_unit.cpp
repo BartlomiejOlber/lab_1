@@ -10,8 +10,6 @@
 namespace domain {
 namespace model {
 
-
-
 std::string ProductUnitConverter::to_str( ProductUnit unit)
 {
 	std::string unit_str = "";

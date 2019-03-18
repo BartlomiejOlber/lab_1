@@ -8,6 +8,7 @@
 #include <cstdlib>
 #include "main_options.hpp"
 #include "containers_interface.hpp"
+#include "preference_interface.hpp"
 #include "shopping_list_interface.hpp"
 #include "stock_interface.hpp"
 
@@ -15,11 +16,12 @@ namespace UI{
 
 void MainOptions::display()
 {
-	std::cout<< "Available options: " << std::endl;
+	std::cout<< "\n\n\t*Available options:*\n\n" << std::endl;
 	std::cout<< "[1]. Show stock" << std::endl;
 	std::cout<< "[2]. House inventory"<< std::endl;
 	std::cout<< "[3]. Shopping list"<<std::endl;
-	std::cout<< "[4]. Exit"<<std::endl;
+	std::cout<< "[4]. Preferences"<<std::endl;
+	std::cout<< "[5]. Exit"<<std::endl;
 	std::cout<< "\n Selection: ";
 }
 
@@ -27,7 +29,7 @@ void MainOptions::loop_controler()
 {
 	int choice = 0;
 	do{
-		//std::system("clear");
+		std::system("clear");
 		display();
 		choice = get_number();
 		switch(choice)
@@ -41,9 +43,12 @@ void MainOptions::loop_controler()
 			case 3:
 				run_shopping_list();
 				break;
+			case 4:
+				run_preferences();
+				break;
 		}
 
-	}while(choice != 4);
+	}while(choice != 5);
 }
 
 void MainOptions::run_stock()
@@ -62,6 +67,12 @@ void MainOptions::run_shopping_list()
 {
 	ListInterface li;
 	li.loop();
+}
+
+void MainOptions::run_preferences()
+{
+	PreferenceInterface pi;
+	pi.loop();
 }
 
 }

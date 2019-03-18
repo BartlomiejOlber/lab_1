@@ -1,0 +1,2 @@
+milk,expiry_date,5
+butter,minimal_quantity,2

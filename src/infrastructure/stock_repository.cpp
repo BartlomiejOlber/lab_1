@@ -22,7 +22,6 @@ void StockRepository::load( domain::model::Stock& stock )
 	double quantity;
 	int unit;
 	while (std::getline( ifs, line )) {
-		std::cout << line << std::endl;
 		std::stringstream iss(line);
 		std::getline(iss, name, ',');
 		std::string price_string;

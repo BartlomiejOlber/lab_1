@@ -16,6 +16,7 @@ class Interface {
 
 public:
 	int get_number();
+	double get_double();
 	std::string get_name();
 };
 

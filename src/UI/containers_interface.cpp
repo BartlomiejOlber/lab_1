@@ -16,6 +16,11 @@ namespace UI{
 
 using namespace domain::model;
 using namespace application;
+using std::cout;
+using std::endl;
+using std::setw;
+using std::left;
+using std::right;
 
 class ContainerUI : public Interface {
 
@@ -35,13 +40,12 @@ void ContainerUI::print_content()
 	std::system("clear");
 	const SmartProductContainer::ContentT& products = container_->get_products();
 	SmartProductContainer::ContentT::const_iterator pos;
-	std::cout << "*" << "Container contents" << "*" << std::endl;
-	std::cout.width( 80 );
-	std::cout.fill( '*' );
-	std::cout <<std::endl;
+	cout << "\n\n\t*Container contents*\n\n";
 	for(pos = products.begin(); pos!=products.end(); ++pos){
-		std::cout << pos->get_name() << ":  " << pos->get_price() << "$   " << pos->get_current_quantity()
-			<< ProductUnitConverter::to_str(pos->get_unit())<< "    "<< pos->get_expiry_date_str() <<std::endl;
+		cout << "\t| Product | "<< setw( 10 ) << right <<pos->get_name() << " | "
+				<< setw( 5 )<< right <<pos->get_price() << "$ | "<< setw(3) << right <<
+				pos->get_current_quantity() << setw(5) << left
+				<< ProductUnitConverter::to_str(pos->get_unit())<< " |" << endl;
 	}
 }
 
@@ -74,6 +78,7 @@ void ContainerUI::display_options()
 void ContainersInterface::display_inventory()
 {
 	std::system("clear");
+	std::cout<<"\n\n\t*House containers*\n\n"<<	std::endl;
 	std::cout<< "[1]. Open refridgerator"<< std::endl;
 	std::cout<< "[2]. Open candy drawer"<< std::endl;
 	std::cout<< "[3]. Open drinks cupboard"<< std::endl;
@@ -88,7 +93,6 @@ void ContainersInterface::loop()
 {
 	int choice = 0;
 	do{
-		//std::system("clear");
 		display_inventory();
 		choice = get_number();
 		switch(choice)
@@ -105,6 +109,7 @@ void ContainersInterface::loop()
 		}
 
 	}while(choice != 4);
+	std::system("clear");
 }
 
 void ContainersInterface::run_refridgerator()

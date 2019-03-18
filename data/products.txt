@@ -1,2 +1,3 @@
-milk,2.1,2,1
-butter,13,1,5
+milk,2.1,2,l
+butter,13,1,kg
+lollipop,0.3,6,items

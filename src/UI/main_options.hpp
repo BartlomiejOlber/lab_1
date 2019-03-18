@@ -20,6 +20,7 @@ public:
 	void run_stock();
 	void run_containers();
 	void run_shopping_list();
+	void run_preferences();
 };
 
 }//end UI

@@ -8,10 +8,11 @@
 #ifndef UI_STOCK_INTERFACE_HPP_
 #define UI_STOCK_INTERFACE_HPP_
 
+#include "base_interface.hpp"
 
 namespace UI{
 
-class StockInterface {
+class StockInterface : public Interface {
 
 public:
 	void show();
