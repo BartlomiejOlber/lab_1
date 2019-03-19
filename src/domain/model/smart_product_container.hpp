@@ -37,6 +37,8 @@ public:
 	virtual ~SmartProductContainer(){};
 };
 
+typedef std::vector<SmartProductContainer> DefinedSmartProductContainersT;
+
 }//end namespace model
 }//end namespace domain
 

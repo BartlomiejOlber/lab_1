@@ -16,12 +16,6 @@ class ListInterface : public Interface{
 
 public:
 	void display();
-	void display_edit();
-	void display_preferences();
-	void run_generation();
-	void run_edit();
-	void run_preferences();
-	void save();
 	void loop();
 };
 

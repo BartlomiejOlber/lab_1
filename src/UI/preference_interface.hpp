@@ -10,7 +10,6 @@
 
 
 #include "base_interface.hpp"
-#include "../domain/model/preference_list.hpp"
 
 
 namespace UI{
@@ -20,7 +19,6 @@ class PreferenceInterface : public Interface{
 public:
 	void display_options();
 	void loop();
-	void print_preference_list( const domain::model::PreferenceList& list );
 };
 
 }//end namespace

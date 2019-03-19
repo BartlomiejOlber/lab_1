@@ -26,8 +26,8 @@ private:
 public:
 	void add_item( const AvailableItem& item );
 	void add_item( const std::string& name, double price, double quantity, int unit );
+	const AvailableItem* find_item( const std::string& name ) const;
 	const AvailableItemsT& get_items() const;
-	void print() const;
 };
 
 
