@@ -29,8 +29,8 @@ private:
 public:
 	void add_item( const AvailableItem& item );
 	void remove_item( const std::string& name );
-	const AvailableItem& find_pricey();
-	const ItemListT& get_items();
+	const AvailableItem* find_pricey();
+	const ItemListT& get_items() const;
 	void generate( const DefinedSmartProductContainersT& defined_containers,
 			const PreferenceList& preference_list,
 			const Stock& stock );

@@ -16,7 +16,7 @@ class ShoppingListService {
 
 public:
 	void generate_list( domain::model::ShoppingList& shopping_list );
-	void store( domain::model::ShoppingList& shopping_list );
+	void save_list( domain::model::ShoppingList& shopping_list );
 };
 
 }

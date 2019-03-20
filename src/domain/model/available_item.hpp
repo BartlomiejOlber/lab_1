@@ -30,6 +30,7 @@ public:
 	double get_price() const;
 	double get_quantity() const;
 	ProductUnit get_unit() const;
+	int how_many_needed( double quantity_needed ) const;
 
 };
 

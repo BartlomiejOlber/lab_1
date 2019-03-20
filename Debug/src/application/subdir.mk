@@ -10,6 +10,7 @@ CPP_SRCS += \
 ../src/application/drinks_service.cpp \
 ../src/application/preference_service.cpp \
 ../src/application/refridgerator_service.cpp \
+../src/application/shopping_list_service.cpp \
 ../src/application/smart_product_container_factory.cpp \
 ../src/application/stock_service.cpp 
 
@@ -20,6 +21,7 @@ OBJS += \
 ./src/application/drinks_service.o \
 ./src/application/preference_service.o \
 ./src/application/refridgerator_service.o \
+./src/application/shopping_list_service.o \
 ./src/application/smart_product_container_factory.o \
 ./src/application/stock_service.o 
 
@@ -30,6 +32,7 @@ CPP_DEPS += \
 ./src/application/drinks_service.d \
 ./src/application/preference_service.d \
 ./src/application/refridgerator_service.d \
+./src/application/shopping_list_service.d \
 ./src/application/smart_product_container_factory.d \
 ./src/application/stock_service.d 
 

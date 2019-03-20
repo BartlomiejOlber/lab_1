@@ -23,12 +23,14 @@ void Stock::add_item( const std::string& name, double price, double quantity, in
 
 const AvailableItem* Stock::find_item( const std::string& name ) const
 {
-	AvailableItem* result = 0;
+	AvailableItem* result = new AvailableItem("", 0.0, 0.0, 0);
 	Stock::AvailableItemsT::const_iterator pos = stock_.begin();
-	while( !result && pos!=stock_.end() )
+	while( pos!=stock_.end() )
 	{
 		if( pos->get_name() == name ){
-			result = pos;
+			std::cerr <<"pointers assignment before";
+			*result = *pos;
+			std::cerr <<"\nafter";
 		}
 		++pos;
 	}

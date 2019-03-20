@@ -9,6 +9,7 @@
 #define DOMAIN_MODEL_PREFERENCE_HPP_
 
 #include "preference_type.hpp"
+#include "smart_product.hpp"
 #include <string>
 
 namespace domain {
@@ -38,6 +39,8 @@ public:
 		return (item_name_ == right.item_name_ && type_ == right.type_);
 	}
 
+	double how_much_needed( const SmartProduct& product ) const;
+	bool is_expired( const SmartProduct& product) const;
 };
 
 }

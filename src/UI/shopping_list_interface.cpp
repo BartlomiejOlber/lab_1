@@ -119,7 +119,7 @@ void ListInterface::loop()
 	StockService stock_service;
 	stock_service.get_stock( stock );
 	service.generate_list( shopping_list );
-	ListUI shopping_list_ui( shopping_list );
+	ListUI shopping_list_ui( shopping_list, stock );
 	int choice = 0;
 	do{
 		//std::system("clear");
@@ -134,7 +134,7 @@ void ListInterface::loop()
 				shopping_list_ui.run_edit();
 				break;
 			case 3:
-				service.store( shopping_list );
+				service.save_list( shopping_list );
 				break;
 		}
 	}while(choice != 4);

@@ -19,13 +19,28 @@ void PreferenceList::add_preference( const std::string& name, const std::string&
 void PreferenceList::remove_preference( const std::string& name, const std::string& type )
 {
 	ListT::iterator pos;
-	const Preference preference( name, type );
 	for( pos = list_.begin(); pos != list_.end(); ++pos ) {
-		if( *pos == preference ){
+		if( pos->getItemName() == name && PreferenceTypeConverter::to_string( pos->getType() ) == type ){
 			list_.erase( pos );
 			pos--;
 		}
 	}
+}
+
+const Preference* PreferenceList::find_preference( const std::string& name, const std::string& type ) const
+{
+
+	PreferenceList::ListT::const_iterator pos( list_.begin() );
+	Preference* result = new Preference( "", "", 0);
+	while( pos!=list_.end() )
+	{
+		if( pos->getItemName() == name && PreferenceTypeConverter::to_string( pos->getType() ) == type ){
+			*result = *pos;
+		}
+		++pos;
+	}
+	return result;
+
 }
 
 const PreferenceList::ListT& PreferenceList::get_preferences() const

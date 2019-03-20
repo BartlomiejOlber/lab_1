@@ -11,6 +11,7 @@
 #include "smart_product_container_factory.hpp"
 #include "stock_service.hpp"
 #include "preference_service.hpp"
+#include "../infrastructure/shopping_list_repository.hpp"
 
 namespace application {
 
@@ -40,9 +41,10 @@ void ShoppingListService::generate_list( domain::model::ShoppingList& shopping_l
 	shopping_list.generate( defined_containers, preference_list, stock );
 }
 
-void ShoppingListService::store( domain::model::ShoppingList& shopping_list )
+void ShoppingListService::save_list( domain::model::ShoppingList& shopping_list )
 {
-
+	::infrastructure::ShoppingListRepository repository( "shopping_list.txt" );
+	repository.store( shopping_list );
 }
 
 }
