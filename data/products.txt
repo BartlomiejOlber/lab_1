@@ -1,0 +1,18 @@
+milk,0.99,2,l
+butter,2.99,1,kg
+lollipop,0.69,6,items
+water,0.29,0.5,l
+red wine,21.99,0.7,l
+apple juice,1.99,1.0,l
+oreo,2.29,4.0,items
+hazelnut chocolate,1.99,3,kg
+dark chocolate,3.99,0.4,kg
+milk fudge,12.99,1.0,kg
+double decker,0.99,3.0,items
+cheese,3.99,1.0,kg
+blue cheese,2.99,1.0,kg
+mustard,0.99,1.0,l
+ketchup,1.50,0.5,l
+lemons,6.39,8.0,items
+cucumbers,0.59,2.0,items
+ham,10.99,1.0,kg
