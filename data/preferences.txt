@@ -1,4 +1,4 @@
-milk,expiry_date,5
-butter,minimal_quantity,2
+butter,minimal_quantity,0.6
+milk,expiry_date,4
 default,expiry_date,2
 default,minimal_quantity,1

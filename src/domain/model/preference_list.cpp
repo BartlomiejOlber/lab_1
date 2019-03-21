@@ -27,15 +27,15 @@ void PreferenceList::remove_preference( const std::string& name, const std::stri
 	}
 }
 
-const Preference* PreferenceList::find_preference( const std::string& name, const std::string& type ) const
+bool PreferenceList::find_preference( const std::string& name, const std::string& type, Preference& preference ) const
 {
-
+	bool result = false;
 	PreferenceList::ListT::const_iterator pos( list_.begin() );
-	Preference* result = new Preference( "", "", 0);
 	while( pos!=list_.end() )
 	{
 		if( pos->getItemName() == name && PreferenceTypeConverter::to_string( pos->getType() ) == type ){
-			*result = *pos;
+			preference = *pos;
+			result = true;
 		}
 		++pos;
 	}

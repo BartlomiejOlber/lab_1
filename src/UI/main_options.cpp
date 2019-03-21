@@ -27,11 +27,11 @@ void MainOptions::display()
 
 void MainOptions::loop_controler()
 {
-	int choice = 3;
+	int choice = 0;
 	do{
 		std::system("clear");
 		display();
-		//choice = get_number();
+		choice = get_number();
 		switch(choice)
 		{
 			case 1:

@@ -32,7 +32,7 @@ void StockInterface::show()
 	Stock::AvailableItemsT::const_iterator pos;
 	cout<< " \n\n\t *Shop inventory*\n\n";
 	for(pos = items.begin(); pos!=items.end(); ++pos){
-		cout << "\t| Product | "<< setw( 10 ) << right <<pos->get_name() << " | " << setw( 5 )<< right <<pos->get_price()
+		cout << "\t| Product | "<< setw( 20 ) << right <<pos->get_name() << " | " << setw( 5 )<< right <<pos->get_price()
 				<< "$ | "<< setw(3) << right <<pos->get_quantity() << setw(5) << left
 				<< ProductUnitConverter::to_str(pos->get_unit())<< " |" << endl;
 	}

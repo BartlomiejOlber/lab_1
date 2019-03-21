@@ -25,7 +25,7 @@ private:
 public:
 	void add_preference( const std::string& name, const std::string& type, double value );
 	void remove_preference( const std::string& name, const std::string& type );
-	const Preference* find_preference( const std::string& name, const std::string& type ) const;
+	bool find_preference( const std::string& name, const std::string& type, Preference& preference ) const;
 	const ListT& get_preferences() const;
 };
 

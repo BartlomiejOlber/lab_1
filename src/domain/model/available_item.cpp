@@ -38,7 +38,7 @@ ProductUnit AvailableItem::get_unit() const
 
 int AvailableItem::how_many_needed( double quantity_needed ) const
 {
-	return ((int)( quantity_needed/quantity_ ) + 1);
+	return (int)( quantity_needed/quantity_ + 0.5) ;
 }
 
 

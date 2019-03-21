@@ -62,10 +62,10 @@ void PreferenceUI::print_list()
 	std::system("clear");
 	const PreferenceList::ListT& preferences = preference_list_.get_preferences();
 	PreferenceList::ListT::const_iterator pos;
-	std::cout << "*" << "Container contents" << "*" << std::endl;
+	std::cout << "*Preferences*" << std::endl;
 	std::cout <<std::endl;
 	for(pos = preferences.begin(); pos!=preferences.end(); ++pos){
-		cout << "\t| Preference | "<< setw( 10 ) << right <<pos->getItemName() << " | "
+		cout << "\t| Preference | "<< setw( 20 ) << right <<pos->getItemName() << " | "
 			<< setw( 17 )<< right <<PreferenceTypeConverter::to_string(pos->getType())<< " | "
 			<< setw(3) << right <<pos->getValue() << " |" << endl;
 	}
@@ -86,9 +86,10 @@ void PreferenceInterface::loop()
 	PreferenceService service;
 	service.init_preference_list( preferences );
 	PreferenceUI preference_ui( preferences );
-	preference_ui.print_list();
 	int choice = 0;
 	do{
+		std::system("clear");
+		preference_ui.print_list();
 		display_options();
 		choice = get_number();
 		switch(choice)

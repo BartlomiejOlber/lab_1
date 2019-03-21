@@ -42,7 +42,7 @@ void ContainerUI::print_content()
 	SmartProductContainer::ContentT::const_iterator pos;
 	cout << "\n\n\t*Container contents*\n\n";
 	for(pos = products.begin(); pos!=products.end(); ++pos){
-		cout << "\t| Product | "<< setw( 10 ) << right <<pos->get_name() << " | "
+		cout << "\t| Product | "<< setw( 20 ) << right <<pos->get_name() << " | "
 				<< setw( 5 )<< right <<pos->get_price() << "$ | "<< setw(3) << right <<
 				pos->get_current_quantity() << setw(5) << left
 				<< ProductUnitConverter::to_str(pos->get_unit())<< " |" << endl;

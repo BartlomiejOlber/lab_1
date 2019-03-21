@@ -32,14 +32,29 @@ public:
 	void print_list();
 	void edit_options();
 	void remove_item();
+	void find_pricey();
 	void add_item();
 };
 
+void ListUI::find_pricey()
+{
+	const AvailableItem& pricey = shopping_list_.find_pricey();
+	cout<< "\n\n\t*The most expensive item in the shopping list: "<< pricey.get_name()<< " | "<< pricey.get_price()<<"$ | "
+		<<pricey.get_quantity()<<ProductUnitConverter::to_str(pricey.get_unit());
+	cout<< " \n [1]. Back"<<endl;
+	cout<< "\n Selection: ";
+	int choice = 0;
+	while (choice!=1)
+	{
+		choice = get_number();
+	}
+}
 
 void ListUI::run_edit()
 {
 	int choice = 0;
 	do{
+		std::system( "clear" );
 		edit_options();
 		choice = get_number();
 		switch(choice)
@@ -61,7 +76,7 @@ void ListUI::print_list()
 	ShoppingList::ItemListT::const_iterator pos;
 	cout<< " \n\n\t *Shopping list*\n\n";
 	for(pos = items.begin(); pos!=items.end(); ++pos){
-		cout << "\t| Product | "<< setw( 10 ) << right <<pos->get_name() << " | " << setw( 5 )<< right <<pos->get_price()
+		cout << "\t| Product | "<< setw( 20 ) << right <<pos->get_name() << " | " << setw( 5 )<< right <<pos->get_price()
 				<< "$ | "<< setw(3) << right <<pos->get_quantity() << setw(5) << left
 				<< ProductUnitConverter::to_str(pos->get_unit())<< " |" << endl;
 	}
@@ -87,11 +102,11 @@ void ListUI::add_item()
 	std::string item_name;
 	cout << "\n\tName the item: ";
 	item_name = get_name();
-	const AvailableItem* item = stock_.find_item( item_name );
-	if( !item ){
+	AvailableItem item( "", 0.0, 0.0, 0);
+	if( !stock_.find_item( item_name, item ) ){
 		cout << "No such item in stock"<<endl;
 	}
-	shopping_list_.add_item( *item );
+	shopping_list_.add_item( item );
 }
 
 void ListUI::edit_options()
@@ -107,7 +122,8 @@ void ListInterface::display()
 	std::cout<< "[1]. Show shopping list"<< std::endl;
 	std::cout<< "[2]. Edit shopping list"<< std::endl;
 	std::cout<< "[3]. Save shopping list"<< std::endl;
-	std::cout<< "[4]. Back"<<std::endl;
+	std::cout<< "[4]. Show the most expensive product in the list"<< std::endl;
+	std::cout<< "[5]. Back"<<std::endl;
 	std::cout<< "\n Selection: ";
 }
 
@@ -122,7 +138,7 @@ void ListInterface::loop()
 	ListUI shopping_list_ui( shopping_list, stock );
 	int choice = 0;
 	do{
-		//std::system("clear");
+		std::system("clear");
 		display();
 		choice = get_number();
 		switch(choice)
@@ -136,8 +152,11 @@ void ListInterface::loop()
 			case 3:
 				service.save_list( shopping_list );
 				break;
+			case 4:
+				shopping_list_ui.find_pricey();
+				break;
 		}
-	}while(choice != 4);
+	}while(choice != 5);
 }
 
 }//end namespace

@@ -21,16 +21,15 @@ void Stock::add_item( const std::string& name, double price, double quantity, in
 	stock_.push_back( item );
 }
 
-const AvailableItem* Stock::find_item( const std::string& name ) const
+bool Stock::find_item( const std::string& name, AvailableItem& item) const
 {
-	AvailableItem* result = new AvailableItem("", 0.0, 0.0, 0);
+	bool result = false;
 	Stock::AvailableItemsT::const_iterator pos = stock_.begin();
 	while( pos!=stock_.end() )
 	{
 		if( pos->get_name() == name ){
-			std::cerr <<"pointers assignment before";
-			*result = *pos;
-			std::cerr <<"\nafter";
+			item = *pos;
+			result = true;
 		}
 		++pos;
 	}

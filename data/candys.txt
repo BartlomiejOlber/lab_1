@@ -1,0 +1,5 @@
+oreo,2.29,4.0,items,2022-05-26
+hazelnut chocolate,1.99,3,items,2020-03-19
+dark chocolate,3.99,0.4,kg,2020-04-12
+milk fudge,12.99,0.3,kg,2020-02-13
+double decker,0.99,3.0,items,2019-01-21
