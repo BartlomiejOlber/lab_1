@@ -5,6 +5,9 @@
  *  Created on: Mar 10, 2019
  *      Author: bartlomiej
  */
+#include "../src/main_or_test.hpp"
+
+#ifdef UNIT_TEST_CATCH
 
 #include "catch.hpp"
 #include "../src/domain/model/available_item.hpp"
@@ -15,7 +18,7 @@ using namespace domain::model;
 
 SCENARIO( "Available item creation" ) {
 
-    GIVEN( "Given name, price, quantity, unit" ) {
+    GIVEN( "Name, price, quantity, unit" ) {
     	std::string name("milk");
     	double price = 1.0;
     	double quantity = 2.0;
@@ -32,10 +35,17 @@ SCENARIO( "Available item creation" ) {
                 REQUIRE( (int)item.get_unit() == unit );
             }
         }
+        WHEN( "Quantity equals 2 and needed quantity = 1.5" ) {
+        	double needed_quantity = 1.5;
+			AvailableItem item( name, price, quantity, unit );
+			THEN( "Needed items = 1" ) {
+				REQUIRE( item.how_many_needed( needed_quantity ) == 1 );
+			}
+		}
     }
 }
 
 }// end namespace test
 
-
+#endif
 
