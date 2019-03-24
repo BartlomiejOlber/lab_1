@@ -1,0 +1,3 @@
+Product: butter  price: 13$  quantity: 1kg
+Product: milk  price: 2.1$  quantity: 2l
+Product:   price: 0$  quantity: 0
