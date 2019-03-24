@@ -86,9 +86,6 @@ void ContainersInterface::display_inventory()
 	std::cout<< "\n Selection: ";
 }
 
-
-
-
 void ContainersInterface::loop()
 {
 	int choice = 0;
@@ -107,7 +104,6 @@ void ContainersInterface::loop()
 				run_drinks();
 				break;
 		}
-
 	}while(choice != 4);
 	std::system("clear");
 }

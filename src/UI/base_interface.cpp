@@ -28,7 +28,7 @@ double Interface::get_double()
 	double input;
 	std::cin >> input;
 	while(std::cin.fail()) {
-		std::cout << "Error, please enter an integer" << std::endl;
+		std::cout << "Error, please enter a number" << std::endl;
 		std::cin.clear();
 		std::cin.ignore(256,'\n');
 		std::cin >> input;

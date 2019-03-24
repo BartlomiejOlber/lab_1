@@ -71,7 +71,6 @@ void PreferenceUI::print_list()
 	}
 }
 
-
 void PreferenceInterface::display_options()
 {
 	cout<< "\n\n[1]. Remove a preference"<< endl;
