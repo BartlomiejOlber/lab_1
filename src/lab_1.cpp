@@ -6,9 +6,6 @@
 // Description : Hello World in C++, Ansi-style
 //============================================================================
 #include "UI/main_options.hpp"
-
-#ifndef UNIT_TEST_CATCH
-
 using namespace std;
 
 
@@ -19,5 +16,3 @@ int main() {
 
 	return 0;
 }
-
-#endif

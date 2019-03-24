@@ -40,6 +40,7 @@ bool PreferenceList::find_preference( const std::string& name, const std::string
 		++pos;
 	}
 	return result;
+
 }
 
 const PreferenceList::ListT& PreferenceList::get_preferences() const

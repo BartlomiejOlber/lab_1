@@ -104,6 +104,7 @@ void ContainersInterface::loop()
 				run_drinks();
 				break;
 		}
+
 	}while(choice != 4);
 	std::system("clear");
 }

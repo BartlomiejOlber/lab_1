@@ -10,7 +10,6 @@
 namespace domain {
 namespace model {
 
-
 const std::string& AvailableItem::get_name() const
 {
 	return name_;
