@@ -5,50 +5,31 @@
  *  Created on: Mar 10, 2019
  *      Author: bartlomiej
  */
-#define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
+
 #include "catch.hpp"
+#include "../src/domain/model/available_item.hpp"
 
 namespace test {
 
+using namespace domain::model;
 
-SCENARIO( "vectors can be sized and resized", "[vector]" ) {
+SCENARIO( "Available item creation" ) {
 
-    GIVEN( "A vector with some items" ) {
-        std::vector<int> v( 5 );
+    GIVEN( "Given name, price, quantity, unit" ) {
+    	std::string name("milk");
+    	double price = 1.0;
+    	double quantity = 2.0;
+    	int unit = 1;
 
-        REQUIRE( v.size() == 5 );
-        REQUIRE( v.capacity() >= 5 );
+        WHEN( "Item is created" ) {
 
-        WHEN( "the size is increased" ) {
-            v.resize( 10 );
+        	AvailableItem item( name, price, quantity, unit );
 
-            THEN( "the size and capacity change" ) {
-                REQUIRE( v.size() == 10 );
-                REQUIRE( v.capacity() >= 10 );
-            }
-        }
-        WHEN( "the size is reduced" ) {
-            v.resize( 0 );
-
-            THEN( "the size changes but not capacity" ) {
-                REQUIRE( v.size() == 0 );
-                REQUIRE( v.capacity() >= 5 );
-            }
-        }
-        WHEN( "more capacity is reserved" ) {
-            v.reserve( 10 );
-
-            THEN( "the capacity changes but not the size" ) {
-                REQUIRE( v.size() == 5 );
-                REQUIRE( v.capacity() >= 10 );
-            }
-        }
-        WHEN( "less capacity is reserved" ) {
-            v.reserve( 0 );
-
-            THEN( "neither size nor capacity are changed" ) {
-                REQUIRE( v.size() == 5 );
-                REQUIRE( v.capacity() >= 5 );
+            THEN( "Item attributes are correct" ) {
+                REQUIRE( item.get_name() == name );
+                REQUIRE( item.get_price() == price );
+                REQUIRE( item.get_quantity() == quantity );
+                REQUIRE( (int)item.get_unit() == unit );
             }
         }
     }

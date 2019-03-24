@@ -12,6 +12,8 @@
 #include "infrastructure/stock_repository.hpp"
 #include "UI/main_options.hpp"
 
+#ifndef UNIT_TEST_CATCH
+
 
 using namespace std;
 
@@ -30,3 +32,5 @@ int main() {
 
 	return 0;
 }
+
+#endif

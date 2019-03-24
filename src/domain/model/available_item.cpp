@@ -10,10 +10,6 @@
 namespace domain {
 namespace model {
 
-void AvailableItem::print() const
-{
-	std::cout << name_ << ": " << price_ << "$ " << quantity_ << (int)unit_ << std::endl;
-}
 
 const std::string& AvailableItem::get_name() const
 {

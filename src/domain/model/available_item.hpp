@@ -25,7 +25,6 @@ private:
 public:
 	AvailableItem( const std::string& name, double price, double quantity, int unit ) :
 		name_(name), price_(price), quantity_(quantity), unit_(ProductUnitConverter::from_int(unit)){};
-	void print() const;
 	const std::string& get_name() const;
 	double get_price() const;
 	double get_quantity() const;
