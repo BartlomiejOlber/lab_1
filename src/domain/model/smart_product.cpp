@@ -14,18 +14,6 @@ namespace domain {
 namespace model {
 
 
-void SmartProduct::validate()
-{
-	if( name_.length() < 4)
-		throw SmartProductNameException();
-	if( price_ < 0.0 )
-		throw SmartProductPriceException();
-	if( expiry_date_.tm_year < 2019 ) //todo: validate expiry date to be a future date
-		throw SmartProductExpiryDateException();
-	if( initial_quantity_ < 0 )
-		throw SmartProductQuantityException();
-}
-
 const std::tm& SmartProduct::get_expiry_date() const
 {
 	return expiry_date_;

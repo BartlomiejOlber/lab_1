@@ -24,7 +24,6 @@ private:
 	double current_quantity_;
 	std::tm expiry_date_;
 	ProductUnit unit_;
-	void validate();
 
 public:
 	SmartProduct() :name_(""), price_(0.0), initial_quantity_(0.0), current_quantity_(0.0),

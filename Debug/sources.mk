@@ -27,6 +27,5 @@ src/UI \
 src/application \
 src/domain/model \
 src/infrastructure \
-src \
 test \
 

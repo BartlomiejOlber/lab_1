@@ -5,9 +5,7 @@
  *  Created on: Mar 10, 2019
  *      Author: bartlomiej
  */
-#include "../src/main_or_test.hpp"
 
-#ifdef UNIT_TEST_CATCH
 
 #include "catch.hpp"
 #include "../src/domain/model/available_item.hpp"
@@ -46,6 +44,4 @@ SCENARIO( "Available item creation" ) {
 }
 
 }// end namespace test
-
-#endif
 
